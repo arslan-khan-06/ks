@@ -137,16 +137,17 @@ p a {
 
 
 @media screen and (max-width: 750px) {
+    
     .container2 {
-    position: absolute;
-    top: 30%;
-    background-color: rgb(3, 3, 18);
-    padding-top: 100px;
-    padding-left: 100px;
-    padding-right: 100px;
-    padding-bottom: 120px;
-    margin-top: 10%;
-}
+        position: absolute;
+        top: 30%;
+        background-color: rgb(3, 3, 18);
+        padding-top: 100px;
+        padding-left: 100px;
+        padding-right: 100px;
+        padding-bottom: 120px;
+        margin-top: 10%;
+    }
 }
 
 
@@ -154,15 +155,15 @@ p a {
 @media screen and (max-width: 510px) {
     
     .container2 {
-    position: absolute;
-    top: 30%;
-    background-color: rgb(3, 3, 18);
-    padding-top: 100px;
-    padding-left: 100px;
-    padding-right: 100px;
-    padding-bottom: 120px;
-    margin-top: 10%;
-}
+        position: absolute;
+        top: 30%;
+        background-color: rgb(3, 3, 18);
+        padding-top: 100px;
+        padding-left: 100px;
+        padding-right: 100px;
+        padding-bottom: 120px;
+        margin-top: 10%;
+    }
 
     .text {
         width: 280px;
