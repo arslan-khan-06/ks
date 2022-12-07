@@ -84,7 +84,6 @@ body {
 
 .acc1 {
     width: 700px;
-    position: relative;
 }
 
 .title1 {
@@ -369,7 +368,7 @@ html {
     }
 
     .acc1 {
-        width: 350px;
+        width: 250px;
     }
 
     iframe {
