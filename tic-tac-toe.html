@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <style>
+            body {
+                background-color: black;
+            }
+
+            .label {
+                display: flex;
+                justify-content: center;
+                color: white;
+                font-family: Arial, Helvetica, sans-serif;
+                font-size: 75px;
+                font-weight: 900;
+                margin-top: 20px !important;
+                animation: colorr 2s infinite;
+            }
+
+            @keyframes colorr {
+                0% {color: white;}
+                20% {color: blue;}
+                40% {color: green;}
+                60% {color: orange;}
+                80% {color: red;}
+                100% {color: white};
+            }
+
+            #grid div div {
+                background-color: lightgray;
+                height: 165px;
+                
+                border: 1px solid black;
+            }
+            #grid {
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr;
+                width: 500px;
+                height: 500px;
+                border: 2px solid white;
+                box-shadow: 2px 2px 10px white;
+            }
+
+            .adjBox {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+            }
+
+            p {
+                color: white;
+            }
+
+            #turn {
+                color: white;
+                font-family: Arial, Helvetica, sans-serif;
+                font-size: 35px;
+                font-weight: 900;
+            }
+            
+            #resulT {
+                color: white;
+                font-family: Arial, Helvetica, sans-serif;
+                font-size: 35px;
+                font-weight: 900;
+                margin-left: 45px;
+            }
+
+            .cell {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                color: white;
+                font-size: 75px;
+                font-family: Arial, Helvetica, sans-serif;
+                font-weight: 900;
+                text-align: center;
+            }
+
+            .interact {
+                margin-top: 75px;
+            }
+
+            button {
+                background-color: rgb(44, 44, 44);
+                padding-top: 15px;
+                padding-bottom: 15px;
+                padding-left: 30px;
+                padding-right: 30px;
+                border: 2px solid rgb(255, 255, 255);
+                border-radius: 5px;
+                cursor: pointer;
+                font-size: 18px;
+                font-family: Arial, Helvetica, sans-serif;
+                font-weight: 900;
+                color: white;
+            }
+
+            button:hover {
+                background-color: white;
+                color: black;
+                border: 2px solid black;
+            }
+
+            button:active {
+                background-color: rgb(185, 185, 185);
+            }
+
+
+            #restartBtn {
+                display: none;
+            }
+
+            button.restart {
+                margin-left: 60px;
+            }
+
+            @media (max-width = 800px) {
+                #grid {
+                    margin-left: 5px !important;
+                }
+            }
+
+            
+
+        </style>
+    </head>
+    <body>
+        <p class="label">Tic Tac Toe</p>
+
+        <div class="adjBox">
+            <div id="grid">
+                <div class="col1">
+                    <div class="cell" id="d1" onclick="cell1()">
+                        
+                    </div>
+                    <div class="cell" id="d2" onclick="cell2()">
+                        
+                    </div>
+                    <div class="cell" id="d3" onclick="cell3()">
+                        
+                    </div>
+                </div>
+                <div class="col2">
+                    <div class="cell" id="d4" onclick="cell4()">
+                        
+                    </div>
+                    <div class="cell" id="d5" onclick="cell5()">
+                        
+                    </div>
+                    <div class="cell" id="d6" onclick="cell6()">
+                        
+                    </div>
+                </div>
+                <div class="col3">
+                    <div class="cell" id="d7" onclick="cell7()">
+                        
+                    </div>
+                    <div class="cell" id="d8" onclick="cell8()">
+                        
+                    </div>
+                    <div class="cell" id="d9" onclick="cell9()">
+                        
+                    </div>
+                </div>  
+            </div>
+            
+            <div class="interact">
+                <button id="strtBtn" onclick="startGame()">Start Game</button>
+                <button class="restart" id="restartBtn" onClick="window.location.reload()"> Restart Game</button>
+                <div class="Player Info">
+                    <p id="turn"></p>
+                    <p id="resulT"></p>
+                </div>
+            </div>
+        </div>
+        
+       
+        
+        
+        <script>
+            var AisAlive = false;
+            var BisAlive = false;
+
+            var clicKed1 = false;
+            var clicKed2 = false;
+            var clicKed3 = false;
+            var clicKed4 = false;
+            var clicKed5 = false;
+            var clicKed6 = false;
+            var clicKed7 = false;
+            var clicKed8 = false;
+            var clicKed9 = false;
+
+            var blc1 = false;
+            var blc2 = false;
+            var blc3 = false;
+            var blc4 = false;
+            var blc5 = false;
+            var blc6 = false;
+            var blc7 = false;
+            var blc8 = false;
+            var blc9 = false;
+
+            var rlc1 = false;
+            var rlc2 = false;
+            var rlc3 = false;
+            var rlc4 = false;
+            var rlc5 = false;
+            var rlc6 = false;
+            var rlc7 = false;
+            var rlc8 = false;
+            var rlc9 = false;
+
+            var playArea = document.getElementById('grid');
+            playArea.style.pointerEvents = "none";
+
+            let turnText = document.getElementById('turn');
+
+            let winEl = document.getElementById('resulT');
+
+
+            function restart(){
+            document.getElementById('restartBtn').style.display = "block";
+            turnText.innerHTML = " ";
+            }
+
+
+
+            function render(){
+                if (blc1 === true && blc2 === true && blc3 === true){
+                    winEl.innerHTML = "Player 1 has won";
+                    winEl.style.color = "blue";
+                    playArea.style.pointerEvents = "none";
+                    restart();
+
+                } else if (blc4 === true && blc5 === true && blc6 === true){
+                    winEl.innerHTML = "Player 1 has won";
+                    winEl.style.color = "blue";
+                    playArea.style.pointerEvents = "none";
+                    restart();
+
+                }else if (blc7 === true && blc8 === true && blc9 === true){
+                    winEl.innerHTML = "Player 1 has won";
+                    winEl.style.color = "blue";
+                    playArea.style.pointerEvents = "none";
+                    restart();
+
+                }else if (blc1 === true && blc4 === true && blc7 === true){
+                    winEl.innerHTML = "Player 1 has won";
+                    winEl.style.color = "blue";
+                    playArea.style.pointerEvents = "none";
+                    restart();
+
+                }else if (blc2 === true && blc5 === true && blc8 === true){
+                    winEl.innerHTML = "Player 1 has won";
+                    winEl.style.color = "blue";
+                    playArea.style.pointerEvents = "none";
+                    restart();
+
+                }else if (blc7 === true && blc8 === true && blc9 === true){
+                    winEl.innerHTML = "Player 1 has won";
+                    winEl.style.color = "blue";
+                    playArea.style.pointerEvents = "none";
+                    restart();
+
+                }else if (blc3 === true && blc6 === true && blc9 === true){
+                    winEl.innerHTML = "Player 1 has won";
+                    winEl.style.color = "blue";
+                    playArea.style.pointerEvents = "none";
+                    restart();
+
+                }else if (blc7 === true && blc8 === true && blc9 === true){
+                    winEl.innerHTML = "Player 1 has won";
+                    winEl.style.color = "blue";
+                    playArea.style.pointerEvents = "none";
+                    restart();
+
+                }else if (blc1 === true && blc5 === true && blc9 === true){
+                    winEl.innerHTML = "Player 1 has won";
+                    winEl.style.color = "blue";
+                    playArea.style.pointerEvents = "none";
+                    restart();
+
+                }else if (blc7 === true && blc5 === true && blc3 === true){
+                    winEl.innerHTML = "Player 1 has won";
+                    winEl.style.color = "blue";
+                    playArea.style.pointerEvents = "none";
+                    restart();
+
+
+                } else if (rlc1 === true && rlc2 === true && rlc3 === true){
+                    winEl.innerHTML = "Player 2 has won";
+                    winEl.style.color = "red";
+                    playArea.style.pointerEvents = "none";
+                    restart();
+
+                } else if (rlc4 === true && rlc5 === true && rlc6 === true){
+                    winEl.innerHTML = "Player 2 has won ";
+                    winEl.style.color = "red";
+                    playArea.style.pointerEvents = "none";
+                    restart();
+
+                }else if (rlc7 === true && rlc8 === true && rlc9 === true){
+                    winEl.innerHTML = "Player 2 has won ";
+                    winEl.style.color = "red";
+                    playArea.style.pointerEvents = "none";
+                    restart();
+
+                }else if (rlc1 === true && rlc4 === true && rlc7 === true){
+                    winEl.innerHTML = "Player 2 has won ";
+                    winEl.style.color = "red";
+                    playArea.style.pointerEvents = "none";
+                    
+                }else if (rlc2 === true && rlc5 === true && rlc8 === true){
+                    winEl.innerHTML = "Player 2 has won ";
+                    winEl.style.color = "red";
+                    playArea.style.pointerEvents = "none";
+                    restart();
+
+                }else if (rlc7 === true && rlc8 === true && rlc9 === true){
+                    winEl.innerHTML = "Player 2 has won ";
+                    winEl.style.color = "red";
+                    playArea.style.pointerEvents = "none";
+                    restart();
+
+                }else if (rlc3 === true && rlc6 === true && rlc9 === true){
+                    winEl.innerHTML = "Player 2 has won ";
+                    winEl.style.color = "red";
+                    playArea.style.pointerEvents = "none";
+                    restart();
+
+                }else if (rlc7 === true && rlc8 === true && rlc9 === true){
+                    winEl.innerHTML = "Player 2 has won ";
+                    winEl.style.color = "red";
+                    playArea.style.pointerEvents = "none";
+                    restart();
+
+                }else if (rlc1 === true && rlc5 === true && rlc9 === true){
+                    winEl.innerHTML = "Player 2 has won ";
+                    winEl.style.color = "red";
+                    playArea.style.pointerEvents = "none";
+                    restart();
+
+                }else if (rlc7 === true && rlc5 === true && rlc3 === true){
+                    winEl.innerHTML = "Player 2 has won ";
+                    winEl.style.color = "red";
+                    playArea.style.pointerEvents = "none";
+                    restart();
+                }else if (clicKed1 === true && clicKed2 === true && clicKed3 === true && clicKed4 === true && clicKed5 === true && clicKed6 === true && clicKed7 === true && clicKed8 === true && clicKed9 === true){
+                    winEl.innerHTML = "Draw";
+                    playArea.style.pointerEvents = "none";
+                    restart();
+                }
+            }
+
+
+
+            function startGame(){
+                var istPull = Math.floor(Math.random() * 7);
+
+                if (istPull === 0 || istPull === 2 || istPull === 4){
+                    AisAlive = true;
+                    BisAlive = false;
+                } else if (istPull === 1 || istPull === 3 || istPull === 5){
+                    BisAlive = true;
+                    AisAlive = false;
+                } 
+
+                if (AisAlive === true && BisAlive === false){
+                    turnText.innerHTML = "Player 1: Your turn";
+                    turnText.style.color = "blue";
+                } else if (BisAlive === true && AisAlive === false){
+                    turnText.innerHTML = "Player 2: Your turn";
+                    turnText.style.color = "red";
+                }
+
+                document.getElementById('strtBtn').style.display = "none";
+                playArea.style.pointerEvents = "all";
+
+                
+            }
+
+
+            function cell1(){
+                var cellVar1 = document.getElementById('d1'); 
+                clicKed1 = true;
+                if (AisAlive === true && BisAlive === false){
+                    cellVar1.style.backgroundColor = "blue";
+                    blc1 = true;
+                    cellVar1.innerHTML = "X";
+                } else if (BisAlive === true && AisAlive === false){
+                    cellVar1.style.backgroundColor = "red";
+                    rlc1 = true;
+                    cellVar1.innerHTML = "O";
+                }  
+                
+                if (AisAlive === true){
+                    BisAlive = true;
+                    AisAlive = false;
+                    turnText.innerHTML = "Player 2: Your turn";
+                    turnText.style.color = "red";
+                } else if (BisAlive === true){
+                    AisAlive = true;
+                    BisAlive = false;
+                    turnText.innerHTML = "Player 1: Your turn";
+                    turnText.style.color = "blue";
+                }
+                render();
+
+                cellVar1.style.pointerEvents = "none";
+            }
+
+
+
+            function cell2(){
+                var cellVar2 = document.getElementById('d2'); 
+                clicKed2 = true;
+                if (AisAlive === true && BisAlive === false){
+                    cellVar2.style.backgroundColor = "blue";
+                    blc2 = true;
+                    cellVar2.innerHTML = "X";
+                } else if (BisAlive === true && AisAlive === false){
+                    cellVar2.style.backgroundColor = "red";
+                    rlc2 = true;
+                    cellVar2.innerHTML = "O";
+                }
+
+                if (AisAlive === true){
+                    BisAlive = true;
+                    AisAlive = false;
+                    turnText.innerHTML = "Player 2: Your turn";
+                    turnText.style.color = "red";
+                } else if (BisAlive === true){
+                    AisAlive = true;
+                    BisAlive = false;
+                    turnText.innerHTML = "Player 1: Your turn";
+                    turnText.style.color = "blue";
+                }
+                render();
+                cellVar2.style.pointerEvents = "none";
+            
+            }
+
+            function cell3(){
+                var cellVar3 = document.getElementById('d3'); 
+                clicKed3 = true;
+                if (AisAlive === true && BisAlive === false){
+                    cellVar3.style.backgroundColor = "blue";
+                    blc3 = true;
+                    cellVar3.innerHTML = "X";
+                } else if (BisAlive === true && AisAlive === false){
+                    cellVar3.style.backgroundColor = "red";
+                    rlc3 = true
+                    cellVar3.innerHTML = "O";
+                }
+                
+                if (AisAlive === true){
+                    BisAlive = true;
+                    AisAlive = false;
+                    turnText.innerHTML = "Player 2: Your turn";
+                    turnText.style.color = "red";
+                } else if (BisAlive === true){
+                    AisAlive = true;
+                    BisAlive = false;
+                    turnText.innerHTML = "Player 1: Your turn";
+                    turnText.style.color = "blue";
+                }
+                render();
+                cellVar3.style.pointerEvents = "none";
+            }
+
+
+            function cell4(){
+                var cellVar4 = document.getElementById('d4'); 
+                clicKed4 = true;
+                if (AisAlive === true && BisAlive === false){
+                    cellVar4.style.backgroundColor = "blue";
+                    blc4 = true;
+                    cellVar4.innerHTML = "X";
+                } else if (BisAlive === true && AisAlive === false){
+                    cellVar4.style.backgroundColor = "red";
+                    rlc4 = true;
+                    cellVar4.innerHTML = "O";
+                }
+            
+                if (AisAlive === true){
+                    BisAlive = true;
+                    AisAlive = false;
+                    turnText.innerHTML = "Player 2: Your turn";
+                    turnText.style.color = "red";
+                } else if (BisAlive === true){
+                    AisAlive = true;
+                    BisAlive = false;
+                    turnText.innerHTML = "Player 1: Your turn";
+                    turnText.style.color = "blue";
+                }
+                render();
+                cellVar4.style.pointerEvents = "none";
+            }
+
+
+            function cell5(){
+                var cellVar5 = document.getElementById('d5');
+                clicKed5 = true;
+                if (AisAlive === true && BisAlive === false){
+                    cellVar5.style.backgroundColor = "blue";
+                    blc5 = true;
+                    cellVar5.innerHTML = "X";
+                } else if (BisAlive === true && AisAlive === false){
+                    cellVar5.style.backgroundColor = "red";
+                    rlc5 = true;
+                    cellVar5.innerHTML = "O";
+                }
+                
+                if (AisAlive === true){
+                    BisAlive = true;
+                    AisAlive = false;
+                    turnText.innerHTML = "Player 2: Your turn";
+                    turnText.style.color = "red";
+                } else if (BisAlive === true){
+                    AisAlive = true;
+                    BisAlive = false;
+                    turnText.innerHTML = "Player 1: Your turn";
+                    turnText.style.color = "blue";
+                }
+                render();
+                cellVar5.style.pointerEvents = "none";
+            }
+
+
+            function cell6(){
+                var cellVar6 = document.getElementById('d6');
+                clicKed6 = true;
+                if (AisAlive === true && BisAlive === false){
+                    cellVar6.style.backgroundColor = "blue";
+                    blc6 = true;
+                    cellVar6.innerHTML = "X";
+                } else if (BisAlive === true && AisAlive === false){
+                    cellVar6.style.backgroundColor = "red";
+                    rlc6 = true;
+                    cellVar6.innerHTML = "O";
+                }
+                
+                if (AisAlive === true){
+                    BisAlive = true;
+                    AisAlive = false;
+                    turnText.innerHTML = "Player 2: Your turn";
+                    turnText.style.color = "red";
+                } else if (BisAlive === true){
+                    AisAlive = true;
+                    BisAlive = false;
+                    turnText.innerHTML = "Player 1: Your turn";
+                    turnText.style.color = "blue";
+                }
+                render();
+                cellVar6.style.pointerEvents = "none";
+            }
+
+
+            function cell7(){
+                var cellVar7 = document.getElementById('d7');
+                clicKed7 = true;
+                if (AisAlive === true && BisAlive === false){
+                    cellVar7.style.backgroundColor = "blue";
+                    blc7 = true;
+                    cellVar7.innerHTML = "X";
+                } else if (BisAlive === true && AisAlive === false){
+                    cellVar7.style.backgroundColor = "red";
+                    rlc7 = true;
+                    cellVar7.innerHTML = "O";
+                }
+                
+                if (AisAlive === true){
+                    BisAlive = true;
+                    AisAlive = false;
+                    turnText.innerHTML = "Player 2: Your turn";
+                    turnText.style.color = "red";
+                } else if (BisAlive === true){
+                    AisAlive = true;
+                    BisAlive = false;
+                    turnText.innerHTML = "Player 1: Your turn";
+                    turnText.style.color = "blue";
+                }
+                render();
+                cellVar7.style.pointerEvents = "none";
+            }
+
+
+            function cell8(){
+                var cellVar8 = document.getElementById('d8');
+                clicKed8 = true;
+                if (AisAlive === true && BisAlive === false){
+                    cellVar8.style.backgroundColor = "blue";
+                    blc8 = true;
+                    cellVar8.innerHTML = "X";
+                } else if (BisAlive === true && AisAlive === false){
+                    cellVar8.style.backgroundColor = "red";
+                    rlc8 = true;
+                    cellVar8.innerHTML = "O";
+                }
+            
+                if (AisAlive === true){
+                    BisAlive = true;
+                    AisAlive = false;
+                    turnText.innerHTML = "Player 2: Your turn";
+                    turnText.style.color = "red";
+                } else if (BisAlive === true){
+                    AisAlive = true;
+                    BisAlive = false;
+                    turnText.innerHTML = "Player 1: Your turn";
+                    turnText.style.color = "blue";
+                }
+                render();
+                cellVar8.style.pointerEvents = "none";
+            }
+
+
+            function cell9(){
+                var cellVar9 = document.getElementById('d9');
+                clicKed9 = true;
+                if (AisAlive === true && BisAlive === false){
+                    cellVar9.style.backgroundColor = "blue";
+                    blc9 = true;
+                    cellVar9.innerHTML = "X";
+                } else if (BisAlive === true && AisAlive === false){
+                    cellVar9.style.backgroundColor = "red";
+                    rlc9 = true;
+                    cellVar9.innerHTML = "O";
+                }
+                
+                if (AisAlive === true){
+                    BisAlive = true;
+                    AisAlive = false;
+                    turnText.innerHTML = "Player 2: Your turn";
+                    turnText.style.color = "red";
+                } else if (BisAlive === true){
+                    AisAlive = true;
+                    BisAlive = false;
+                    turnText.innerHTML = "Player 1: Your turn";
+                    turnText.style.color = "blue";
+                }
+                render();
+                cellVar9.style.pointerEvents = "none";
+            }
+
+
+
+
+        </script>
+    </body>
+</html>

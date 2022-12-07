@@ -1,0 +1,441 @@
+body {
+    overflow-x: hidden !important;
+}
+
+.class1 {
+    opacity: 1;
+    animation: an1 3s infinite;
+    letter-spacing: 5px;
+    font-size: 55px;
+}
+
+@keyframes an1 {
+    0% {color: white;}
+    50% {color: rgb(45, 45, 45);}
+    100% {color: white;}    
+}
+
+.img1 {
+    box-shadow: -10px -10px rgb(255, 255, 255);
+}
+
+
+
+.cap1 {
+    font-family: 'Square Peg', cursive;
+    font-size: 25px;
+    margin: 15px;
+}
+
+.para1 {
+    color: white;
+    font-family: 'Revalia', cursive;
+    letter-spacing: 2px;
+    word-spacing: 5px;
+    margin-top: 150px;
+}
+
+.para2 {
+    font-family: 'Square Peg', cursive;
+    color: white;
+    word-spacing: 5px;
+}
+
+.redText {
+    color: rgb(254, 70, 70);
+}
+
+
+.button1 {
+    background: transparent;
+    color: white;
+    padding: 15px;
+    border: 2px solid rgb(255, 255, 255);
+}
+
+.button1:hover {
+    background-color: rgba(254, 70, 70, 0.2);
+    border: 2px solid rgb(255, 255, 255);
+}
+
+.button1:active {
+    background-color: rgba(254, 70, 70, 0.4);
+}
+
+
+.button2 {
+    background-color: rgba(254, 70, 70, 0.6);
+}
+
+.button2:hover {
+    background-color: rgb(254, 70, 70);
+}
+
+.button2:active {
+    background-color: rgb(254, 70, 70);
+}
+
+
+.cardDes {
+    background-color: black !important;
+    color: white !important;
+    border: 1px solid white !important;
+}
+
+.acc1 {
+    width: 700px;
+    position: relative;
+    left: 50%;
+    translate: -50%;
+}
+
+.title1 {
+    font-family: 'Roboto', sans-serif;
+}
+
+.flex1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.flex2 {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.paddedDiv {
+    padding-left: 200px;
+    padding-right: 200px;
+}
+
+a {
+    text-decoration: none;
+    color: rgb(254, 70, 70);
+}
+
+.lanImg {
+    width: 200px;
+}
+
+.cLan {
+    width: 150px;
+}
+
+.cssLan {
+    width: 150px;
+}
+
+.jsLan {
+    width: 300px;
+}
+
+footer {
+    font-family: 'Chakra Petch', sans-serif;
+    background-color: #343a40;
+    color: white;
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+
+.wideLink {
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+.b2t {
+    margin-right: 30px;
+    margin-bottom: 30px;
+    
+}
+
+.btnCoffee {
+    background-color: rgb(122, 37, 6); padding-bottom: 5px;
+    border-radius: 5px;
+}
+
+
+.overlay {
+    position: absolute;
+    left: 100px;
+    top: 15%;
+    text-align: left;
+    color: white;
+    font-family: 'Revalia', cursive;
+}
+
+
+
+.btnCoffee:hover {
+    background-color: rgb(195, 56, 1);
+}
+
+.btnCoffee:active {
+    background-color: rgb(131, 58, 29);
+}
+
+
+.slider {
+    margin-left: 300px !important;
+    margin-right: 300px !important;
+}
+
+
+.ntg {
+    position: relative;
+    margin-top: 10%;
+    left: 50%;
+    translate: -50%;
+}
+
+
+#show {
+    opacity: 0;
+    display: none;
+    transition: opacity 2s;
+}
+
+#show.activate {
+    opacity: 1;
+    display: block;
+    animation: fadein 2s;
+}
+
+@keyframes fadein {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+@media screen and (max-width: 750px) {
+
+    .acc1 {
+        width: 480px;
+    }
+
+    iframe {
+        width: 450px;
+        height: 250px;
+    }
+
+    .paddedDiv {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .flexDown {
+        display: flex;
+        flex-direction: column;
+    }
+    .slider {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+
+    .overlay {
+        position: absolute;
+        left: 30px;
+        top: 10%;
+        text-align: left;
+        color: white;
+        font-family: 'Revalia', cursive;
+        font-size: 22px;
+    }
+
+    .flex2 {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+    .ntg {
+        width: 400px;
+    }
+
+} 
+
+
+
+.anP1 {
+    opacity: 1;
+    animation: animation1 10s;
+}
+
+@keyframes animation1 {
+    0% {opacity: 0;}
+    35% {opacity: 1;}
+    100% {opacity: 1;}
+}
+
+
+.anP2 {
+    opacity: 1;
+    animation: animation2 15s;
+}
+
+@keyframes animation2 {
+    0% {opacity: 0;}
+    20% {opacity: 1;}
+    100% {opacity: 1;}
+}
+
+
+.anP3 {
+    opacity: 1;
+    animation: animation3 10s;
+}
+
+@keyframes animation3 {
+    0% {opacity: 0;}
+    30% {opacity: 1;}
+    100% {opacity: 1;}
+}
+
+
+.anP4 {
+    opacity: 1;
+    animation: animation4 10s;
+}
+
+@keyframes animation4 {
+    0% {opacity: 0;}
+    40% {opacity: 1;}
+    100% {opacity: 1;}
+}
+
+
+.anP5 {
+    opacity: 1;
+    animation: animation5 10s;
+}
+
+@keyframes animation5 {
+    0% {opacity: 0;}
+    50% {opacity: 1;}
+    100% {opacity: 1;}
+}
+
+
+.anP6 {
+    opacity: 1;
+    animation: animation6 10s;
+}
+
+@keyframes animation6 {
+    0% {opacity: 0;}
+    60% {opacity: 1;}
+    100% {opacity: 1;}
+}
+
+
+.anP7 {
+    opacity: 1;
+    animation: animation7 10s;
+}
+
+@keyframes animation7 {
+    0% {opacity: 0;}
+    70% {opacity: 1;}
+    100% {opacity: 1;}
+}
+
+
+
+
+
+
+
+@media screen and (max-width: 510px) {
+    .class1 {
+        font-size: 36px;
+    }
+
+    .para1 {
+        font-size: auto;
+        margin-top: 0;
+    }
+
+    .img1 {
+        width: 250px;
+    }
+
+    .acc1 {
+        width: 350px;
+    }
+
+    iframe {
+        width: 350px;
+        height: 230px;
+    }
+
+    .paddedDiv {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .lanImg {
+        width: 100px;
+    }
+
+    .flexDown {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .b2t {
+        margin-right: 15px;
+        margin-bottom: 30px;
+    }
+
+    .slider {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+
+    .overlay {
+        position: absolute;
+        left: 20px;
+        top: 10%;
+        text-align: left;
+        color: white;
+        font-family: 'Revalia', cursive;
+        font-size: 18px;
+    }
+
+    .flex2 {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+    .ntg {
+        width: 400px;
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
