@@ -1,5 +1,6 @@
 body {
     overflow-x: hidden !important;
+    background-image: linear-gradient(to bottom, rgb(0, 0, 0), rgb(11, 9, 71));
 }
 
 .class1 {
