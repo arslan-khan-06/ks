@@ -214,6 +214,106 @@ html {
 }
 
 
+
+
+.side-st {
+    width: 700px;
+    height: 200px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 5px;
+    padding-left: 45px;
+    padding-right: 45px;
+}
+
+.lanbox {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+
+.lantag {
+    font-size: 45px;
+    font-weight: 500;
+    color: rgb(255, 255, 255);
+    margin-right: 20px;
+    margin-bottom: 0;
+}
+
+.landes {
+    color: rgb(191, 20, 20);
+    font-weight: 700;
+}
+
+
+.shadow1 {
+    border: 1px solid rgb(255, 60, 0);
+    box-shadow: 2px 2px 5px rgb(255, 60, 0),
+    -2px -2px 5px rgb(255, 60, 0);
+}
+
+
+.shadow2 {
+    border: 1px solid rgb(0, 119, 255);
+    box-shadow: 2px 2px 5px rgb(0, 119, 255),
+    -2px -2px 5px rgb(0, 119, 255);
+}
+
+.shadow3 {
+    border: 1px solid rgb(188, 144, 1);
+    box-shadow: 2px 2px 5px rgb(188, 144, 1),
+    -2px -2px 5px rgb(188, 144, 1);
+}
+
+
+.shadow4 {
+    border: 1px solid rgb(106, 124, 246);
+    box-shadow: 2px 2px 5px rgb(106, 124, 246),
+    -2px -2px 5px rgb(106, 124, 246);
+}
+
+.shadow5 {
+    border: 1px solid rgb(0, 162, 255);
+    box-shadow: 2px 2px 5px rgb(0, 162, 255),
+    -2px -2px 5px rgb(0, 162, 255);
+}
+
+
+
+.shadow6 {
+    border: 1px solid rgb(55, 140, 110);
+    box-shadow: 2px 2px 5px rgb(55, 140, 110),
+    -2px -2px 5px rgb(55, 140, 110);
+}
+
+
+
+.shadow7 {
+    border: 1px solid rgb(88, 52, 196);
+    box-shadow: 2px 2px 5px rgb(88, 52, 196),
+    -2px -2px 5px rgb(88, 52, 196);
+}
+
+
+
+.shadow8 {
+    border: 1px solid rgb(194, 174, 255);
+    box-shadow: 2px 2px 5px rgb(194, 174, 255),
+    -2px -2px 5px rgb(194, 174, 255);
+}
+
+
+
+
+
+
+
 @media screen and (max-width: 750px) {
 
     .acc1 {
@@ -260,6 +360,12 @@ html {
     .ntg {
         width: 300px;
     }
+    
+    
+    .side-st {
+        width: 500px;
+    }
+
 
 } 
 
@@ -421,6 +527,22 @@ html {
 
     .ntg {
         width: 150px;
+    }
+    
+    
+    .side-st {
+        width: 330px;
+        height: 160px;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .lanbox img {
+        width: 50px;
+    }
+
+    .lantag {
+        font-size: 25px;
     }
 
 }
