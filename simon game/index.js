@@ -148,7 +148,7 @@ function check_it() {
             $('body').css("background-color", "purple");
             $('#h1-pre').text("Game Over!");
             $('#h1').text("Weldone! That's a new highscore. Press A key to save and restart");
-            localStorage.setItem('score', numss)
+            localStorage.setItem('score', numss);
         } else {
             $('body').css("background-color", "red");
             $('#h1').text("Game Over! Press A key to restart");
