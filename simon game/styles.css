@@ -1,0 +1,137 @@
+* {
+    margin: 0;
+}
+
+
+body {
+    background-color: black;
+    color: white;
+    font-family: sans-serif;
+    text-align: center;
+}
+
+h1 {
+    margin: 20px;
+}
+
+h3 {
+    margin: 5px 20px 30px 20px;
+}
+
+.row-score {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.section-1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+}
+
+button {
+    padding: 10px 20px 10px 20px;
+    border: 1px solid rgb(255, 255, 255);
+    background-color: black;
+    color: white;
+    cursor: pointer;
+    font-size: 20px;
+    transition: all 0.5s;
+    display: none !important;
+}
+
+button:hover {
+    background-color: white;
+    color: black;
+}
+
+button:active {
+    background-color: rgb(110, 110, 110);
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-bottom: 40px;
+}
+
+.animate {
+    opacity: 1;
+    animation: opace 0.2s;
+}
+
+@keyframes opace {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+
+.cell {
+    width: 100px;
+    height: 100px;
+    background-color: white;
+    margin: 10px;
+    cursor: pointer;
+    border-radius: 8px;
+    border: 5px solid black;
+}
+
+.cell:active {
+    transform: scale(0.99);
+}
+
+
+#cell-1 {
+    background-color: red;
+}
+#cell-1:active {
+     background-color: rgba(255, 0, 0, 0.550);
+     transition: all 0.1s;
+}
+
+#cell-2 {
+    background-color: blue;
+}
+#cell-2:active {
+    background-color: rgba(0, 0, 255, 0.550);
+    transition: all 0.1s;
+}
+
+#cell-3 {
+    background-color: green;
+}
+#cell-3:active {
+    background-color: rgba(0, 128, 0, 0.550);
+    transition: all 0.1s;
+}
+
+#cell-4 {
+    background-color: yellow;
+}
+#cell-4:active {
+    background-color: rgba(255, 255, 0, 0.550);
+    transition: all 0.1s;
+}
+
+
+
+@media screen and (max-width: 1000px) {
+    button {
+        display: flex !important;
+    }
+}
