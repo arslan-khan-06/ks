@@ -146,6 +146,7 @@ function check_it() {
         if (parseInt(yABs.innerText) > parseInt(hABs.innerText)) {
             let numss = yABs.innerText;
             $('body').css("background-color", "purple");
+            $('#h1-pre').text("Game Over!");
             $('#h1').text("Weldone! That's a new highscore. Press A key to save and restart");
             localStorage.setItem('score', numss)
         } else {
